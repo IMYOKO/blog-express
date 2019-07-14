@@ -33,23 +33,23 @@ if (ENV !== 'production') {
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
+// app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
-const sessionStore = new RedisStore({
-  client: REDIS_CLIENT
-})
+// const sessionStore = new RedisStore({
+//   client: REDIS_CLIENT
+// })
 
 // 处理session
-app.use(session({
-  secret: 'ydfshADsdA&13231_#',
-  cookie: {
-    path: '/', // 默认配置
-    httpOnly: true, // 默认配置
-    maxAge: 24 * 60 * 60 * 1000
-  },
-  store: sessionStore
-}))
+// app.use(session({
+//   secret: 'ydfshADsdA&13231_#',
+//   cookie: {
+//     path: '/', // 默认配置
+//     httpOnly: true, // 默认配置
+//     maxAge: 24 * 60 * 60 * 1000
+//   },
+//   store: sessionStore
+// }))
 
 // app.use('/', indexRouter);
 app.use('/api/user', userRouter);

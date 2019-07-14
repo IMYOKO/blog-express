@@ -1,7 +1,9 @@
 const express = require('express');
+var jwt = require('jwt-simple');
 const router = express.Router();
 const { userlogin, userList, getUser, addUser, updateUser } = require('../controller/user')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
+const jwtSecret = require('../conf/jwtConf')
 
 router.post('/login', (req, res, next) => {
   const { username, password } = req.body
@@ -9,8 +11,17 @@ router.post('/login', (req, res, next) => {
   return result.then(val => {
     if (val.username) {
       // 设置 session 的值
-      req.session.username = val.username
-      req.session.realname = val.realname
+      // req.session.username = val.username
+      // req.session.realname = val.realname
+
+      const tokenExpiresTime = 7 * 24 * 60 * 60 * 1000;
+      const payload = val
+      const token = jwt.encode({
+        iss: payload,
+        exp: Date.now() + tokenExpiresTime,
+      }, jwtSecret)
+
+      val.token = token
 
       res.json(new SuccessModel(val, '登录成功'))
       return

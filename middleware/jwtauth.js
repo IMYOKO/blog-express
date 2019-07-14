@@ -1,7 +1,7 @@
 const jwt = require('jwt-simple');
 const jwtSecret = require('../conf/jwtConf')
 const { getUser } = require('../controller/user')
-const { SuccessModel, ErrorModel } = require('../model/resModel')
+const { ErrorModel } = require('../model/resModel')
 
 module.exports = function(req, res, next) {
   //todo

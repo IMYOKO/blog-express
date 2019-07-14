@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { getList, getDetail, newBlog, updateBlog, deleteBlog } = require('../controller/blog')
 const { SuccessModel, ErrorModel } = require('../model/resModel')
-const loginCheck = require('../middleware/loginCheck')
+// const loginCheck = require('../middleware/loginCheck')
 const jwtauth = require('../middleware/jwtauth')
 
 // 博客列表
